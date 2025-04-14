@@ -95,9 +95,22 @@
         color: #0066cc;
         z-index: 2;
       }
+
+      #height-tester {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100px;
+        background-color: red;
+        color: white;
+      }
     </style>
   </head>
   <body>
+    <div id="height-tester">
+      Test div that is stretched until the end of the visible area (with a 20px
+      bottom margin)
+    </div>
     <div class="container">
       <h2>Viewport Detector</h2>
       <p>Type in the input field to open the virtual keyboard</p>
@@ -133,6 +146,7 @@
 
     <script>
       // Elements
+      const heightTesterEl = document.getElementById("height-tester");
       const fullHeightEl = document.getElementById("full-height");
       const visibleHeightEl = document.getElementById("visible-height");
       const keyboardHeightEl = document.getElementById("keyboard-height");
@@ -170,6 +184,10 @@
 
         visibleViewportViz.style.height = `${visibleHeight * scale}px`;
         visibleViewportViz.style.top = "0px";
+
+        const bottomMargin = 20; // px
+        heightTesterEl.style.height = `${visibleHeight - bottomMargin}px`;
+        heightTesterEl.style.top = "0px";
       }
 
       // Initialize
